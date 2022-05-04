@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-//Database
+//Service
+import { TaskService } from 'src/app/services/task.service';
+//Model
 import { Task } from '../Task';
-import { TASKS } from '../mock-tasks';
 
 @Component({
   selector: 'app-tasks',
@@ -10,11 +10,19 @@ import { TASKS } from '../mock-tasks';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
+  //Create a value with the type Task (As for the model imported above)
+  tasks: Task[] = [];
 
-  tasks: Task[] = TASKS;
-  constructor() { }
+  constructor(
+    //Calling the service so that the component knows it will use it 
+    private taskService: TaskService
+  ) { }
 
   ngOnInit(): void {
+    //Getting the service response into a value 'tasks'
+    this.taskService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks;
+    });
   }
 
 }
