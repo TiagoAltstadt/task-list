@@ -1,26 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+
+//Database
 import { Task } from '../Task';
 import { TASKS } from '../mock-tasks';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-tasks',
+  templateUrl: './tasks.component.html',
+  styleUrls: ['./tasks.component.css']
 })
-export class HeaderComponent implements OnInit {
-
-  title = "My Thingy";
+export class TasksComponent implements OnInit {
 
   tasks: Task[] = TASKS;
-
-
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  toggleAddTask() {
-
   }
 
 }
