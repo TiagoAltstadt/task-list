@@ -21,7 +21,7 @@ export class TaskItemComponent implements OnInit {
   }
 
   onDelete(taskItem: Task) {
-    console.log("task-item.component => onDelete()");
+    console.log("task-item.component => onDelete() ID:" + taskItem.id);
     this.onDeleteTask.emit(taskItem);
   }
 

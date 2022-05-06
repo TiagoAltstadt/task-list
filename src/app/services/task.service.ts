@@ -22,9 +22,9 @@ export class TaskService {
   }
 
   deleteTask(task: Task): Observable<Task> {
-    console.log("task.service => deleteTask()");
+    console.log("task.service => deleteTask() ID:" + task.id);
 
-    const url = "${this.apiUrl}/${task.id}";
+    const url = `${this.apiUrl}/${task.id}`;
     return this.http.delete<Task>(url);
   }
 }
