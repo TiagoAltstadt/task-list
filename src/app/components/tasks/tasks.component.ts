@@ -19,21 +19,31 @@ export class TasksComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     //Getting the service response into a value 'tasks'
     this.taskService.getTasks().subscribe((tasks) => {
-      
+
       this.taskList = tasks;
     });
   }
 
   deleteTask(task: Task) {
-    console.log("task.component => deleteTask() ID:" +task.id );
-
     this.taskService.deleteTask(task)
       .subscribe(() => {
         this.taskList = this.taskList.filter(t => t.id !== task.id)
       })
+  }
+
+  toggleReminder(task: Task) {
+    task.reminder = !task.reminder;
+    this.taskService.updateTaskReminder(task).subscribe();
+  }
+
+  addTask(task: Task) {
+    console.log(task);
+    this.taskService.addTask(task).subscribe((task) => {
+      this.taskList.push(task)
+    });
   }
 
 }

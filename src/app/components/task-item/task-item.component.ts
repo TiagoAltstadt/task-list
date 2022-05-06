@@ -13,7 +13,8 @@ import { Task } from '../Task';
 })
 export class TaskItemComponent implements OnInit {
   @Input() taskItem: Task = TASKS[0];
-  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter()
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
   faTimes = faTimes;
   constructor() { }
 
@@ -21,8 +22,10 @@ export class TaskItemComponent implements OnInit {
   }
 
   onDelete(taskItem: Task) {
-    console.log("task-item.component => onDelete() ID:" + taskItem.id);
     this.onDeleteTask.emit(taskItem);
+  }
+  onToggle(taskItem: Task) {
+    this.onToggleReminder.emit(taskItem);
   }
 
 }

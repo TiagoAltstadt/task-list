@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 //I use the property Observable because im calling the Database in a Async way, as i don't know how much its going to take to get a response
 import { Observable, of } from 'rxjs';
 
 //Database
 import { Task } from '../components/Task';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +28,17 @@ export class TaskService {
   }
 
   deleteTask(task: Task): Observable<Task> {
-    console.log("task.service => deleteTask() ID:" + task.id);
-
     const url = `${this.apiUrl}/${task.id}`;
     return this.http.delete<Task>(url);
+  }
+
+  updateTaskReminder(task: Task): Observable<Task> {
+    const url = `${this.apiUrl}/${task.id}`;
+    return this.http.put<Task>(url, task, httpOptions);
+
+  }
+
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiUrl, task, httpOptions)
   }
 }
