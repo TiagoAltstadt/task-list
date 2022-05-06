@@ -9,10 +9,11 @@ import { TASKS } from '../mock-tasks';
 })
 export class HeaderComponent implements OnInit {
 
-  title = "My Thingy";
+  title = "ToDo's:";
 
   tasks: Task[] = TASKS;
 
+  shown: boolean = false;
 
   constructor() { }
 
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleAddTask() {
-
+    this.shown = !this.shown;
   }
 
 }

@@ -1,5 +1,7 @@
 .add-form{
     margin-bottom: 40px;
+    padding: 5px;
+    background-color: rgba(0, 255, 255, 0.107);
 }
 .task {
     background-color: rgb(242, 242, 242);
