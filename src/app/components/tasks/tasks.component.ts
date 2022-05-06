@@ -11,7 +11,7 @@ import { Task } from '../Task';
 })
 export class TasksComponent implements OnInit {
   //Create a value with the type Task (As for the model imported above)
-  tasks: Task[] = [];
+  taskList: Task[] = [];
 
   constructor(
     //Calling the service so that the component knows it will use it 
@@ -19,10 +19,21 @@ export class TasksComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
     //Getting the service response into a value 'tasks'
     this.taskService.getTasks().subscribe((tasks) => {
-      this.tasks = tasks;
+      
+      this.taskList = tasks;
     });
+  }
+
+  deleteTask(task: Task) {
+    console.log("task.component => deleteTask()");
+
+    this.taskService.deleteTask(task)
+      .subscribe(() => {
+        this.taskList = this.taskList.filter(t => t.id !== task.id)
+      })
   }
 
 }
