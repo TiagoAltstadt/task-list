@@ -8,17 +8,14 @@ import { TASKS } from '../mock-tasks';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  tasks: Task[] = TASKS;
+  shown: boolean = false;
 
   title = "ToDo's:";
 
-  tasks: Task[] = TASKS;
-
-  shown: boolean = false;
-
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   toggleAddTask() {
     this.shown = !this.shown;

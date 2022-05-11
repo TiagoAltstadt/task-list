@@ -2,7 +2,8 @@
 <header class="container">
     <div class="titleAndButton">
         <h1>{{title}}</h1>
-        <app-button color="green" text="Add Task" (btnClick)="toggleAddTask()"></app-button>
+        <app-button [color]="shown" (btnClick)="toggleAddTask()">
+        </app-button>
     </div>
     <app-tasks [shown]="(shown)"></app-tasks>
 </header>
